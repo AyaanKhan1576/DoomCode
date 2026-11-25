@@ -1,0 +1,56 @@
+{
+  "name": "doomcode",
+  "displayName": "DoomCode",
+  "description": "Short-form video breaks inside your editor.",
+  "version": "0.0.1",
+  "private": true,
+  "publisher": "doomcode-dev",
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.100.0",
+    "node": ">=24.0.0 <25.0.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "doomcode.spike.probeBrowserRoutes",
+        "title": "Run Browser Route Probe",
+        "category": "DoomCode (Dev)"
+      },
+      {
+        "command": "doomcode.spike.stopProbeSession",
+        "title": "Stop Browser Probe Session",
+        "category": "DoomCode (Dev)"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "watch": "node scripts/build.mjs --watch",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "eslint src test",
+    "test:unit": "vitest run",
+    "test:integration": "node scripts/build.mjs && tsc -p tsconfig.integration.json && vscode-test",
+    "package": "node scripts/build.mjs --production && vsce package --no-dependencies --skip-license --out dist/doomcode.vsix",
+    "vscode:prepublish": "node scripts/build.mjs --production"
+  },
+  "devDependencies": {
+    "@types/mocha": "10.0.10",
+    "@types/node": "24.19.3",
+    "@types/vscode": "1.100.0",
+    "@vscode/test-cli": "0.0.15",
+    "@vscode/test-electron": "3.1.0",
+    "@vscode/vsce": "4.1.1",
+    "esbuild": "0.28.2",
+    "eslint": "10.15.0",
+    "mocha": "12.0.3",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.74.0",
+    "vitest": "5.1.1"
+  }
+}
